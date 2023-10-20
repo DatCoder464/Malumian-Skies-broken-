@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[${forge_version},)"
+issueTrackerURL = "https://github.com/ValkyrienSkies/Valkyrien-Skies-2/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "vs_addon"
+version = "${version}"
+displayName = "VS Addon Template"
+authors = ["TechTastic"]
+description = '''
+A template mod for Valkyrien Skies addons
+'''
+logoFile = "icon.png"
+
+[[dependencies.vs_addon]]
+modId = "forge"
+mandatory = true
+versionRange = "[${forge_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vs_addon]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vs_addon]]
+modId = "valkyrienskies"
+mandatory = true
+versionRange = "[2,)"
+ordering = "AFTER"
+side = "BOTH"

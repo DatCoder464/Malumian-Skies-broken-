@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "vs_addon",
+  "version": "${version}",
+  "name": "VS Addon Template",
+  "description": "A template mod for Valkyrien Skies addons",
+  "authors": [
+    "TechTastic"
+  ],
+  "contact": {
+    "homepage": "https://valkyrienskies.org/",
+    "sources": "https://github.com/TechTastic/VS-Addon-Template"
+  },
+  "license": "MIT License",
+  "icon": "assets/vs_addon/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.techtastic.vs_addon.fabric.AddonModFabric"
+    ],
+    "client": [
+      "io.github.techtastic.vs_addon.fabric.AddonModFabric${'$'}Client"
+    ],
+    "preLaunch": [
+      "io.github.techtastic.vs_addon.fabric.ValkyrienPreLaunch"
+    ]
+  },
+  "mixins": [
+    "vs_addon-common.mixins.json",
+    "vs_addon.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.18.2",
+    "valkyrienskies": ">=${vs2_version}"
+  }
+}

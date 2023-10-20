@@ -1,0 +1,101 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+}
+
+repositories {
+    maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+}
+
+dependencies {
+    include(annotationProcessor(implementation("com.github.LlamaLad7:MixinExtras:0.1.1")))
+
+    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    common(project(path: ":common", configuration: "namedElements")) { transitive = false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive = false }
+
+    // dependencies
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+
+    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+
+    //VS2
+    modApi("org.valkyrienskies:valkyrienskies-118-fabric:${vs2_version}") { transitive = false }
+    implementation("org.valkyrienskies.core:api:1.1.0+2b2f93f793") { transitive = false }
+
+    // Kotlin
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.5+kotlin.1.7.20")
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21"
+    api "org.jetbrains.kotlin:kotlin-reflect:1.7.21"
+}
+
+processResources {
+    // set up properties for filling into metadata
+    Map<String, String> properties = Map.of(
+            "vs2_version", vs2_version,
+            "version", version,
+            "fabric_loader_version", fabric_loader_version,
+            "fabric_api_version", fabric_api_version,
+            "minecraft_version", minecraft_version
+    )
+    properties.forEach((k, v) -> inputs.property(k, v))
+
+    filesMatching("fabric.mod.json") {
+        expand properties
+    }
+}
+
+shadowJar {
+    exclude "architectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    injectAccessWidener = true
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier null
+}
+
+jar {
+    classifier "dev"
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
+
+publishing {
+    publications {
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+    }
+}
