@@ -24,6 +24,33 @@ configurations {
     developmentForge.extendsFrom common
 }
 
+repositories {
+    maven {
+        name = "Curse Maven"
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven { url 'https://jitpack.io' }
+    mavenCentral()
+    maven {
+        name 'Curios maven'
+        url = "https://maven.theillusivec4.top/"
+    }
+
+    maven {
+        name 'JEI maven'
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name = "CTM Maven"
+        url = "https://maven.tterrag.com/"
+    }
+    maven { url = 'https://maven.blamejared.com/' }
+    mavenCentral()
+}
+
 dependencies {
     include(annotationProcessor(implementation("com.github.LlamaLad7:MixinExtras:0.1.1")))
 
@@ -36,6 +63,19 @@ dependencies {
     //VS2
     modApi("org.valkyrienskies:valkyrienskies-118-forge:${rootProject.vs2_version}") { transitive = false }
     implementation("org.valkyrienskies.core:api:1.1.0+2b2f93f793") { transitive = false }
+
+    //Funni magic
+    modImplementation("curse.maven:malum-484064:4616320")
+
+    // JEI Dependency
+    //compileOnly("mezz.jei:jei-${minecraft_version}:${jeiVersion}:api")
+    //runtimeOnly("mezz.jei:jei-${minecraft_version}:${jeiVersion}")
+
+    // Curios dependency
+    compileOnly("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}:api")
+    runtimeOnly("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}")
+
+    implementation("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}")
 
     // JOML
     compileOnly("org.joml:joml:1.10.4")
@@ -63,8 +103,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "vs_addon-common.mixins.json",
-                "vs_addon.mixins.json"
+                "malumian_skies-common.mixins.json",
+                "malumian_skies.mixins.json"
         )
     }
 }

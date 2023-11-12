@@ -20,7 +20,29 @@ configurations {
 }
 
 repositories {
-    maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+    maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
+    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+    maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
+    maven { url = "https://api.modrinth.com/maven" } // LazyDFU
+    maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+    maven {
+        url 'https://api.modrinth.com/maven'
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        name = "Ladysnake Libs"
+        url = 'https://maven.ladysnake.org/releases'
+    }
+
+    maven { url 'https://maven.quiltmc.org/repository/snapshot' }
+    maven { url 'https://jitpack.io' }
+    mavenCentral()
 }
 
 dependencies {

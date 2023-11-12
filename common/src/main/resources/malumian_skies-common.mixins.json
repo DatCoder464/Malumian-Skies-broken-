@@ -1,9 +1,10 @@
 {
   "required": true,
-  "package": "io.github.techtastic.vs_addon.mixin",
+  "package": "io.github.techtastic.malumian_skies.mixin",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "io.github.techtastic.vs_addon.mixin.CommonMixinConfigPlugin",
+  "plugin": "io.github.techtastic.malumian_skies.mixin.CommonMixinConfigPlugin",
   "mixins": [
+
   ],
   "client": [
 

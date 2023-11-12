@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "vs_addon",
+  "id": "malumian_skies",
   "version": "${version}",
   "name": "VS Addon Template",
   "description": "A template mod for Valkyrien Skies addons",
@@ -12,22 +12,22 @@
     "sources": "https://github.com/TechTastic/VS-Addon-Template"
   },
   "license": "MIT License",
-  "icon": "assets/vs_addon/icon.png",
+  "icon": "assets/malumian_skies/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.techtastic.vs_addon.fabric.AddonModFabric"
+      "io.github.techtastic.malumian_skies.fabric.AddonModFabric"
     ],
     "client": [
-      "io.github.techtastic.vs_addon.fabric.AddonModFabric${'$'}Client"
+      "io.github.techtastic.malumian_skies.fabric.AddonModFabric${'$'}Client"
     ],
     "preLaunch": [
-      "io.github.techtastic.vs_addon.fabric.ValkyrienPreLaunch"
+      "io.github.techtastic.malumian_skies.fabric.ValkyrienPreLaunch"
     ]
   },
   "mixins": [
-    "vs_addon-common.mixins.json",
-    "vs_addon.mixins.json"
+    "malumian_skies-common.mixins.json",
+    "malumian_skies.mixins.json"
   ],
   "depends": {
     "minecraft": ">=1.18.2",

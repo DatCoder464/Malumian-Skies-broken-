@@ -4,7 +4,7 @@ issueTrackerURL = "https://github.com/ValkyrienSkies/Valkyrien-Skies-2/issues"
 license = "MIT License"
 
 [[mods]]
-modId = "vs_addon"
+modId = "malumian_skies"
 version = "${version}"
 displayName = "VS Addon Template"
 authors = ["TechTastic"]
@@ -13,23 +13,38 @@ A template mod for Valkyrien Skies addons
 '''
 logoFile = "icon.png"
 
-[[dependencies.vs_addon]]
+[[dependencies.malumian_skies]]
 modId = "forge"
 mandatory = true
 versionRange = "[${forge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.vs_addon]]
+[[dependencies.malumian_skies]]
 modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.vs_addon]]
+[[dependencies.malumian_skies]]
 modId = "valkyrienskies"
 mandatory = true
 versionRange = "[2,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.malumian_skies]]
+modId = "malum"
+mandatory = true
+versionRange = "1.5"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.malumian_skies]]
+modId = "lodestone"
+mandatory = true
+versionRange = "1.4.1.435"
+ordering = "NONE"
+side = "BOTH"
+
